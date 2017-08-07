@@ -7,9 +7,10 @@ ENV DEBIAN_FRONTEND noninteractive
 ARG REPOSITORY="https://download.jitsi.org/jitsi/debian"
 
 # Latest stable as of 11/24
-ARG JITSI="1.0.1073-1"
-ARG VIDEOBRIDGE="751-1"
-ARG JICOFO="1.0-267-1"
+ARG JITSI="1.0.2098-1"
+ARG VIDEOBRIDGE="953-1"
+ARG JICOFO="1.0-357-1"
+ARG JITSI-PROSODY="1.0.1967-1"
 
 RUN apt-get update -y && \
   apt-get install -y software-properties-common && \
@@ -22,8 +23,8 @@ RUN  cd /tmp && \
   dpkg -i jitsi-videobridge_${VIDEOBRIDGE}_amd64.deb && \
   wget -q ${REPOSITORY}/jicofo_${JICOFO}_amd64.deb && \
   dpkg -i jicofo_${JICOFO}_amd64.deb && \
-  wget -q ${REPOSITORY}/jitsi-meet-prosody_${JITSI}_all.deb && \
-  dpkg -i jitsi-meet-prosody_${JITSI}_all.deb && \
+  wget -q ${REPOSITORY}/jitsi-meet-prosody_${JITSI-PROSODY}_all.deb && \
+  dpkg -i jitsi-meet-prosody_${JITSI-PROSODY}_all.deb && \
   wget -q ${REPOSITORY}/jitsi-meet_${JITSI}_all.deb && \
   dpkg -i jitsi-meet_${JITSI}_all.deb
 
