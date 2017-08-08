@@ -6,11 +6,11 @@ ENV DEBIAN_FRONTEND noninteractive
 # Use https://download.jitsi.org/unstable/ for unstable
 ARG REPOSITORY="https://download.jitsi.org/jitsi/debian"
 
-# Latest stable as of 11/24
+# Latest stable as of 5/17
 ARG JITSI="1.0.2098-1"
 ARG VIDEOBRIDGE="953-1"
 ARG JICOFO="1.0-357-1"
-ARG JITSI-PROSODY="1.0.1967-1"
+ARG JITSIMEET="1.0.1967-1"
 
 RUN apt-get update -y && \
   apt-get install -y software-properties-common && \
@@ -19,13 +19,17 @@ RUN apt-get update -y && \
   apt-get install -y wget openjdk-8-jre nginx prosody luarocks default-jre-headless
 
 RUN  cd /tmp && \
-  wget -q ${REPOSITORY}/jitsi-videobridge_${VIDEOBRIDGE}_amd64.deb && \
+  wget ${REPOSITORY}/jitsi-videobridge_${VIDEOBRIDGE}_amd64.deb && \
   dpkg -i jitsi-videobridge_${VIDEOBRIDGE}_amd64.deb && \
-  wget -q ${REPOSITORY}/jicofo_${JICOFO}_amd64.deb && \
+  wget ${REPOSITORY}/jicofo_${JICOFO}_amd64.deb && \
   dpkg -i jicofo_${JICOFO}_amd64.deb && \
-  wget -q ${REPOSITORY}/jitsi-meet-prosody_${JITSI-PROSODY}_all.deb && \
-  dpkg -i jitsi-meet-prosody_${JITSI-PROSODY}_all.deb && \
-  wget -q ${REPOSITORY}/jitsi-meet_${JITSI}_all.deb && \
+  wget ${REPOSITORY}/jitsi-meet-prosody_${JITSIMEET}_all.deb && \
+  dpkg -i jitsi-meet-prosody_${JITSIMEET}_all.deb && \
+  wget ${REPOSITORY}/jitsi-meet-web_${JITSIMEET}_all.deb && \
+  dpkg -i jitsi-meet-web_${JITSIMEET}_all.deb && \
+  wget ${REPOSITORY}/jitsi-meet-web-config_${JITSIMEET}_all.deb && \
+  dpkg -i jitsi-meet-web-config_${JITSIMEET}_all.deb && \
+  wget ${REPOSITORY}/jitsi-meet_${JITSI}_all.deb && \
   dpkg -i jitsi-meet_${JITSI}_all.deb
 
 
